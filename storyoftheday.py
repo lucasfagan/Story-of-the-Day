@@ -35,5 +35,9 @@ for i in range(len(data)):
         #add to dictionary
         tweets[tweetscore]=tweet
 besttweets=sorted(tweets.keys(), reverse=True)
-for x in reversed(range(5)):
-    api.update_status("Story #"+str(x+1)+" of "+str(startdate.strftime("%A"))+", from "+tweets[besttweets[x]]["user"]["name"]+": "+"http://twitter.com/tweets/statuses/"+tweets[besttweets[x]]["id_str"])
+for x in range(20):
+    for y in range(x+1,100):
+        if tweets[besttweets[x]]["text"][:20]==tweets[besttweets[y]]["text"][:20]:
+            del besttweets[y]
+for z in reversed(range(10)):
+    api.update_status("Story #"+str(z+1)+" of "+str(startdate.strftime("%A"))+", from "+tweets[besttweets[z]]["user"]["name"]+": "+"http://twitter.com/tweets/statuses/"+tweets[besttweets[z]]["id_str"])
